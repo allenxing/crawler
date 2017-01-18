@@ -1,13 +1,19 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/bank');
-mongoose.connection.on('open', function() {
+let mongo = mongoose.connect('mongodb://localhost/bank');
+let db = mongo.connection;
+console.log('----------------------------------db----------------------------------')
+db.on('open', function() {
 	console.log('mongodb connected.......................');
 });
-mongoose.connection.on('error', function() {
+
+db.on('error', function() {
 	console.log('mongodb error.......................');
 });
 let BankSchema = new Schema({
+	_id:{
+		type: String
+	},
 	shopname: {
 		type: String
 	},
@@ -22,18 +28,43 @@ let BankSchema = new Schema({
 	},
 	desp: {
 		type: String
+	},
+	bank:{
+		type: String
 	}
+}, {
+	safe: true
 });
-let BankModel = mongoose.model('Bank',BankSchema)
-let BankEntity = new BankModel({
-	shopname: 'test'
+let UserSchema = new Schema({
+	// _id:{
+	// 	type: String
+	// },
+	username: {
+		type: String
+	},
+	email: {
+		type: String
+	},
+	city: {
+		type: String
+	},
+	bank: {
+		type: String
+	},
+	issubscribe: {
+		type: Boolean
+	}
+}, {
+	safe: true
+});
+/*let UserModel = mongoose.model('User', UserSchema)
+let BankEntity = new UserModel({
+	_id: 1,
+	username: 333
 })
-BankEntity.save()
-/*let db = mongoose.createConnection('localhost','test')
-db.on('open',function(){
-	console.log('mongodb connected.......................');
-});*/
-
+BankEntity.save()*/
+//exports.Bank = mongoose.model('Bank', BankSchema);
 module.exports = {
-	
+	Bank: mongoose.model('Bank', BankSchema),
+	User: mongoose.model('User', UserSchema)
 }
