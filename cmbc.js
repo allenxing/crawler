@@ -7,7 +7,7 @@ let superagent = require('superagent');
 let db = require('./db.js');
 let config = require('./config.js').cmbc;
 let crwaler = () => {
-	console.log('crawler begin..............');
+	console.log('cmbc crawler begin..............');
 	config.citycode.forEach((city, index) => {
 		console.log('http://best.cmbchina.com/Shop/Search.aspx?class=&subclass=&regionid=&ccid=&keyword=&pageno=1&citycode=' + city)
 			//列表页
