@@ -1,15 +1,14 @@
 /**
- * des   : 招商银行活动爬虫
- * author: allenxing
+ * description   : 招商银行活动爬虫
+ * author        : allenxing
  */
 let cheerio = require('cheerio');
 let superagent = require('superagent');
 let db = require('./db.js');
-let config = require('./config.js');
-let citycode = ['0755', '0010']
+let config = require('./config.js').cmbc;
 let crwaler = () => {
 	console.log('crawler begin..............');
-	citycode.forEach((city, index) => {
+	config.citycode.forEach((city, index) => {
 		console.log('http://best.cmbchina.com/Shop/Search.aspx?class=&subclass=&regionid=&ccid=&keyword=&pageno=1&citycode=' + city)
 			//列表页
 		superagent.get('http://best.cmbchina.com/Shop/Search.aspx?class=&subclass=&regionid=&ccid=&keyword=&pageno=1&citycode=' + city)
@@ -30,6 +29,7 @@ let crwaler = () => {
 									 * date
 									 * desp
 									 * bank
+									 * img
 									 */
 									let id = 'cmbc_' + $('#merchantID').val();
 									let item = {
@@ -39,7 +39,9 @@ let crwaler = () => {
 										address: $('.content_detail').eq(0).find('tr').eq(1).find('td').eq(1).text().replace('查看地图>>', ''),
 										date: $('.content_detail').eq(0).find('tr').eq(3).find('td').eq(1).text().replace(/\s+/g, ''),
 										desp: $('.content_detail').eq(1).find('tr').eq(1).find('td').eq(1).text(),
-										bank: 'cmbc'
+										img: $('#slidesMain').find('img').eq(0).attr('src'),
+										bank: 'cmbc',
+										city: city
 									}
 
 									console.log(item);

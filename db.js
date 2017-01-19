@@ -31,6 +31,12 @@ let BankSchema = new Schema({
 	},
 	bank:{
 		type: String
+	},
+	city :{
+		type : String
+	},
+	img: {
+		type: String
 	}
 }, {
 	safe: true
