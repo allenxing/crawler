@@ -7,7 +7,7 @@ module.exports = {
 		citycode: ['0755', '0010']
 	},
 	ccb: {
-		step: 10,
+		step: 20,
 		citys: [{
 			"city": [{
 				"name": "北京市",

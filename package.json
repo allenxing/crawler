@@ -22,8 +22,11 @@
   },
   "homepage": "https://github.com/allenxing/crawler#readme",
   "dependencies": {
+    "async": "^2.1.4",
     "cheerio": "^0.22.0",
+    "eventproxy": "^0.3.5",
     "mongoose": "^4.7.7",
+    "request": "^2.79.0",
     "superagent": "^3.3.2"
   }
 }
