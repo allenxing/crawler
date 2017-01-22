@@ -8,5 +8,5 @@ let ccb = require("./ccb.js");
 // 	response.write('Hello');
 // 	response.end();
 // }).listen(7000)
-// cmbc.run();
+cmbc.run();
 ccb.run();

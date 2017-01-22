@@ -5,13 +5,12 @@
 let cheerio = require('cheerio');
 let superagent = require('superagent');
 let db = require('./db.js');
-let config = require('./config.js').cmbc;
+let cities = require('./config.js').cmbc;
 let crwaler = () => {
 	console.log('cmbc crawler begin..............');
-	config.citycode.forEach((city, index) => {
-		console.log('http://best.cmbchina.com/Shop/Search.aspx?class=&subclass=&regionid=&ccid=&keyword=&pageno=1&citycode=' + city)
+	cities.forEach((city, index) => {
 			//列表页
-		superagent.get('http://best.cmbchina.com/Shop/Search.aspx?class=&subclass=&regionid=&ccid=&keyword=&pageno=1&citycode=' + city)
+		superagent.get('http://best.cmbchina.com/Shop/Search.aspx?class=&subclass=&regionid=&ccid=&keyword=&pageno=1&citycode=' + city.code)
 			.end(function(err, res) {
 				if (res.ok) {
 					let $ = cheerio.load(res.text);
@@ -21,16 +20,6 @@ let crwaler = () => {
 							.end(function(err, res) {
 								if (res.ok) {
 									let $ = cheerio.load(res.text);
-									/**
-									 * _id
-									 * name
-									 * tel
-									 * address
-									 * date
-									 * desp
-									 * bank
-									 * img
-									 */
 									let id = 'cmbc_' + $('#merchantID').val();
 									let item = {
 										_id: id,
@@ -41,7 +30,7 @@ let crwaler = () => {
 										desp: $('.content_detail').eq(1).find('tr').eq(1).find('td').eq(1).text(),
 										img: $('#slidesMain').find('img').eq(0).attr('src'),
 										bank: 'cmbc',
-										city: city
+										city: city.name
 									}
 
 									console.log(item);

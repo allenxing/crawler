@@ -8,7 +8,7 @@ let eventproxy = require('eventproxy');
 let fs = require('fs')
 let async = require('async');
 let db = require('./db.js');
-let config = require('./config.js').ccb;
+let citys = require('./config.js').ccb;
 let ep = eventproxy();
 let flUlrs = [];
 let saveFirstErrorUrls = (url) => {
@@ -100,7 +100,7 @@ let fetchSecondUrl = (item, callback) => {
 }
 let crwaler = () => {
 	console.log('ccb crawler begin..............');
-	config.citys.forEach((province, index) => {
+	citys.forEach((province, index) => {
 		province.city.forEach((city, i) => {
 			flUlrs.push({
 				url: 'http://creditcard.ccb.com/webtran/get_crd_info.gsp' + '?card_province=' + province.code + '&card_city=' + city.code + '&table_type=2',
