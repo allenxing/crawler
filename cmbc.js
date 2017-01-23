@@ -30,7 +30,7 @@ let crwaler = () => {
 										desp: $('.content_detail').eq(1).find('tr').eq(1).find('td').eq(1).text(),
 										img: $('#slidesMain').find('img').eq(0).attr('src'),
 										bank: 'cmbc',
-										city: city.name
+										city: city.name + '市'
 									}
 
 									console.log(item);
