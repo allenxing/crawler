@@ -47,6 +47,7 @@ let getDetails = (secondUrls) => {
 							desp: $('.content-left').find('.content').find('p').eq(2).text().replace('优惠信息：', ''),
 							img: 'http://creditcard.ccb.com/' + $('.content-left').find('.thhd_head').next().attr('src'),
 							bank: 'ccb',
+							bankname: '建设银行',
 							city: it.city
 						}
 						console.log(item);

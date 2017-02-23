@@ -11,7 +11,7 @@ db.on('error', function() {
 	console.log('mongodb error.......................');
 });
 let BankSchema = new Schema({
-	_id:{
+	_id: {
 		type: String
 	},
 	shopname: {
@@ -29,11 +29,14 @@ let BankSchema = new Schema({
 	desp: {
 		type: String
 	},
-	bank:{
+	bank: {
 		type: String
 	},
-	city :{
-		type : String
+	bankname: {
+		type: String
+	},
+	city: {
+		type: String
 	},
 	img: {
 		type: String

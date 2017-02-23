@@ -12,13 +12,13 @@ let crwaler = () => {
 			//列表页
 		superagent.get('http://best.cmbchina.com/Shop/Search.aspx?class=&subclass=&regionid=&ccid=&keyword=&pageno=1&citycode=' + city.code)
 			.end(function(err, res) {
-				if (res.ok) {
+				if (res && res.ok) {
 					let $ = cheerio.load(res.text);
 					$('.page_item').each(function() {
 						//详情页
 						superagent.get('http://best.cmbchina.com' + $(this).find('.shopname').attr('href'))
 							.end(function(err, res) {
-								if (res.ok) {
+								if (res && res.ok) {
 									let $ = cheerio.load(res.text);
 									let id = 'cmbc_' + $('#merchantID').val();
 									let item = {
@@ -30,6 +30,7 @@ let crwaler = () => {
 										desp: $('.content_detail').eq(1).find('tr').eq(1).find('td').eq(1).text(),
 										img: $('#slidesMain').find('img').eq(0).attr('src'),
 										bank: 'cmbc',
+										bankname: '招商银行',
 										city: city.name + '市'
 									}
 
@@ -42,12 +43,12 @@ let crwaler = () => {
 											}
 										})
 								} else {
-									console.log('Oh no! error ' + res.text);
+									console.log('Oh no! error');
 								}
 							});
 					})
 				} else {
-					console.log('Oh no! error ' + res.text);
+					console.log('Oh no! error');
 				}
 			})
 	})
