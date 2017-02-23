@@ -33,8 +33,6 @@ let crwaler = () => {
 										bankname: '招商银行',
 										city: city.name + '市'
 									}
-
-									console.log(item);
 									db.Bank.findOneAndUpdate({
 											_id: id
 										}, item, function(err, doc) {

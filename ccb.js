@@ -50,7 +50,6 @@ let getDetails = (secondUrls) => {
 							bankname: '建设银行',
 							city: it.city
 						}
-						console.log(item);
 						db.Bank.findOneAndUpdate({
 							_id: id
 						}, item, function(err, doc) {
